@@ -11,7 +11,7 @@ setup_linux() {
 			cp make/linux/Makefile .
 			;;
 		build|--build|-b)
-			cp make/build/${LINUX}/Makefile .
+			cp make/${LINUX}/Makefile .
 			;;
 		*)
 			echo "Wrong Operant" ;;
@@ -29,7 +29,7 @@ setup_termux() {
 			cp make/termux/Makefile .
 			;;
 		build|--build|-b)
-			cp make/build/termux/${MANAGER}/Makefile .
+			cp make/termux/${MANAGER}/Makefile .
 			;;
 		*)
 			echo "Wrong Operant" ;;
