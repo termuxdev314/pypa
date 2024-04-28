@@ -1,0 +1,4 @@
+#!/bin/bash
+
+MSG="Usage: $0 --add <project> <submoduls> <files>
+This Command add submoduls to the Basic Structur."

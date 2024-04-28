@@ -1,0 +1,4 @@
+#!/bin/bash
+
+MSG="Usage: $0 --create <project>
+By this Command you create an Project in The Project Folder from pypa. This will add the basic structur"

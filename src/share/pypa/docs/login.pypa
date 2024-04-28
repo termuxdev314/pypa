@@ -1,0 +1,4 @@
+#!/bin/bash
+
+MSG="Usage: $0 --login <token>
+Setup ~/.pypirc"

@@ -7,25 +7,28 @@ fi
 
 OPTION="$1"
 
+include() {
+	source ${PREFIX}/share/pypa/docs/$1.pypa
+}
+
 show_help() {
 	local MESSAGE="$1"
-	local MSG=""
 
 	case "${MESSAGE}" in
 		create)
-			MSG="" ;;
+			include create ;;
 		add)
-			MSG="" ;;
+			include add ;;
 		build)
-			MSG="" ;;
+			include build ;;
 		upload)
-			MSG="" ;;
+			include upload ;;
 		login)
-			MSG="" ;;
+			include login ;;
 		error)
-			MSG="" ;;
+			include error ;;
 		*)
-			MSG="" ;;
+			include main ;;
 	esac
 
 	echo "${MSG}"
@@ -66,6 +69,7 @@ init_project() {
 	done
 
 	cp ${PREFIX}/share/pypa/sample/setup.py ~/.pypa/${NAME}/
+	cp ${PREFIX}/share/pypa/sample/README.rst ~/.pypa/${NAME}
 	echo "Init ready. __init__.py and setup.py added"
 }
 

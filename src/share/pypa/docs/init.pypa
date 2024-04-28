@@ -1,0 +1,4 @@
+#!/bin/bash
+
+MSG="Usage: $0 --init <project>
+Init the Project and Make this Ready for Build and Upload. After this write the README.rst and the setup.py"

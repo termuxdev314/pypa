@@ -1,0 +1,4 @@
+#!/bin/bash
+
+MSG="Usage: $0 --upload <project>
+Upload the Project on pypi.org"

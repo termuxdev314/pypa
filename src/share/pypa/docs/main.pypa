@@ -1,0 +1,12 @@
+#!/bin/bash
+
+MSG="Usage: $0 [command]
+Commands:
+    - --create <project>
+    - --add <submodul> <files>
+    - --init <project>
+    - --build <project>
+    - --upload <project>
+    - --login <token>
+
+For more Details use --help <command>"
