@@ -1,0 +1,48 @@
+#!/bin/bash
+
+SETUP="$1"
+
+setup_linux() {
+	local VERSION="$1"
+	local LINUX="$2"
+
+	case "${VERSION}" in
+		make|--make|-m)
+			cp make/linux/Makefile .
+			;;
+		build|--build|-b)
+			cp make/build/${LINUX}/Makefile .
+			;;
+		*)
+			echo "Wrong Operant" ;;
+	esac
+
+	make
+}
+
+setup_termux() {
+	local VERSION="$1"
+	local MANAGER="$2"
+
+	case "${VERSION}" in
+		make|--make|-m)
+			cp make/termux/Makefile .
+			;;
+		build|--build|-b)
+			cp make/build/termux/${MANAGER}/Makefile .
+			;;
+		*)
+			echo "Wrong Operant" ;;
+	esac
+
+	make
+}
+
+case "${SETUP}" in
+	linux)
+		setup_linux "${@:2}" ;;
+	termux)
+		setup_termux "${@:2}" ;;
+	*)
+		setup_linux make ;;
+esac

@@ -1,0 +1,118 @@
+#!/bin/bash
+
+if [ "$#" -eq 0 ]; then
+	echo "Pls use an Arg"
+	exit 1
+fi
+
+OPTION="$1"
+
+show_help() {
+	local MESSAGE="$1"
+	local MSG=""
+
+	case "${MESSAGE}" in
+		create)
+			MSG="" ;;
+		add)
+			MSG="" ;;
+		build)
+			MSG="" ;;
+		upload)
+			MSG="" ;;
+		login)
+			MSG="" ;;
+		error)
+			MSG="" ;;
+		*)
+			MSG="" ;;
+	esac
+
+	echo "${MSG}"
+
+}
+
+create_project() {
+	local NAME="$1"
+
+	mkdir -p ~/.pypa/${NAME}/src/${NAME}
+	echo "Your Project Path are in: ~/.pypa/${NAME}"
+}
+
+add_modul() {
+	local NAME="$1"
+	local MODUL="$2"
+	local FILES="${@:3}"
+
+	cd ~/.pypa/${NAME}/src/${NAME}
+	mkdir -p ${MODUL}
+
+	for file in ${FILES}; do
+		touch ${MODUL}/${file}.py
+		echo "from .${file} import *" >> ${MODUL}/__init__.py
+	done
+
+	echo "Modul ${MODUL} with ${FILES} added"
+}
+
+init_project() {
+	local NAME="$1"
+	local MODULE=$(ls ~/.pypa/${NAME}/src/${NAME})
+
+	cd ~/.pypa/${NAME}/src/${NAME}
+
+	for modul in ${MODULE}; do
+		echo "from . import ${modul}" >> __init__.py
+	done
+
+	cp ${PREFIX}/share/pypa/sample/setup.py ~/.pypa/${NAME}/
+	echo "Init ready. __init__.py and setup.py added"
+}
+
+build_project() {
+	local NAME="$1"
+
+	mkdir -p ~/.pypa/builds/${NAME}
+	cd ~/.pypa/${NAME}
+
+	python3 -m build
+
+	mv dist ~/.pypa/builds/${NAME}
+}
+
+upload_modul() {
+	local NAME="$1"
+
+	cd ~/.pypa/builds/${NAME}
+
+	python3 -m twine upload dist/*
+}
+
+login_pypi() {
+	local TOKEN="$1"
+
+	echo "[pypi]" >> ~/.pypirc
+	echo "username = __token__" >> ~/.pypirc
+	echo "password = ${TOKEN}" >> ~/.pypirc
+
+	echo "Login Succesfull"
+}
+
+case "${OPTION}" in
+	--create|-c)
+		create_project "$2" ;;
+	--add|-a)
+		add_modul "${@:2}" ;;
+	--init|-i)
+		init_project "$2" ;;
+	--build|-b)
+		build_project "$2" ;;
+	--upload|-u)
+		upload_modul "$2" ;;
+	--login|-l)
+		login_pypi "$2" ;;
+	--help|-h)
+		show_help "$2" ;;
+	*)
+		show_help error ;;
+esac
