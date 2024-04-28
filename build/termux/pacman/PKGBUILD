@@ -19,7 +19,7 @@ post_install() {
 	python -m pip install build
 }
 
-build() {
+package() {
 	mkdir -p ${pkgdir}/usr/bin
 	mkdir -p ${pkgdir}/usr/share
 	cp -rf ${srcdir}/bin/* ${pkgdir}/usr/bin/
