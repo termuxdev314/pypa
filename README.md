@@ -32,3 +32,32 @@ shorts
 -ta for Termux with Apt
 -tp for Termux with Pacman
 ```
+
+# Installation
+
+Base
+```bash
+./setup [arguments]
+```
+
+Linux
+```text
+./setup --linux --make 
+./setup --linux --build [debian|archlinux]
+
+Shorts:
+    -lm for make
+    -lbd for Debian
+    -lba for Archlinux
+```
+
+Termux
+```bash
+./setup --termux --make
+./setup --linux [apt|pacman]
+
+Shorts:
+    -tm for make
+    -tba for Termux with Apt
+    -tbp for Termux with Pacman
+```
