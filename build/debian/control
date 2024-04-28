@@ -1,0 +1,7 @@
+Package: pypa
+Version: 1.0
+Architecture: all
+Priority: important
+Depends: python3, python3-pip, pipx, build-essential, python3-venv, rust
+Maintainer: @termuxdev314 <termuxdev314@gmail.com>
+Description: Tool to Create PIP Librarys for PyPi.org without Problems

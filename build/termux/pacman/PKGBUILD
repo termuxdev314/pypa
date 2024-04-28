@@ -1,0 +1,27 @@
+pkgname="pypa"
+pkgver="1.0"
+pkgrel="1"
+pkgdesc="Tool to Create PIP Librarys for PyPi.org without Problems"
+arch=('any')
+url="https://github.com/termuxdev314/pypa"
+license=('MIT')
+depends=('python' 'python-pip' 'rust' 'base-devel' 'wget' 'dpkg' 'apt')
+
+post_install() {
+	mkdir -p ${PREFIX}/etc/apt/sources.list.d/
+        mkdir -p ${PREFIX}/etc/apt/preferences.d/
+        mkdir -p ${PREFIX}/etc/apt/apt.conf.d/
+	wget https://github.com/termuxdev314/termuxdev314.github.io/releases/download/v.1.0/python-repo.deb
+	dpkg -i python-repo.deb
+	rm -rf python-repo.deb
+	apt-get update -qq
+	apt-get install -y python-twine
+	python -m pip install build
+}
+
+build() {
+	mkdir -p ${pkgdir}/usr/bin
+	mkdir -p ${pkgdir}/usr/share
+	cp -rf ${srcdir}/bin/* ${pkgdir}/usr/bin/
+	cp -rf ${srcdir}/share/* ${pkgdir}/usr/share
+}

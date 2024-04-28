@@ -1,0 +1,20 @@
+pkgname="pypa"
+pkgver="1.0"
+pkgrel="1"
+pkgdesc="Tool to Create PIP Librarys for PyPi.org without Problems"
+arch=('any')
+url="https://github.com/termuxdev314/pypa"
+license=('MIT')
+depends=('python' 'python-pip' 'pipx' 'rust' 'base-devel')
+
+post_install() {
+	pipx install twine
+	python -m pip install build
+}
+
+build() {
+	mkdir -p ${pkgdir}/usr/bin
+	mkdir -p ${pkgdir}/usr/share
+	cp -rf ${srcdir}/bin/* ${pkgdir}/usr/bin/
+	cp -rf ${srcdir}/share/* ${pkgdir}/usr/share
+}

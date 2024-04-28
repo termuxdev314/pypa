@@ -1,0 +1,5 @@
+#!/bin/bash
+
+apt-get update -qq
+apt-get install python-twine
+python -m pip install build
