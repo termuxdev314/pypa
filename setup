@@ -39,10 +39,22 @@ setup_termux() {
 }
 
 case "${SETUP}" in
-	linux)
+	linux|--linux|-l)
 		setup_linux "${@:2}" ;;
-	termux)
+	termux|--termux|-t)
 		setup_termux "${@:2}" ;;
+	-lm)
+		setup_linux make ;;
+	-lba)
+		setup_linux build archlinux ;;
+	-lbd)
+		setup_linux build debian ;;
+	-tm)
+		setup_termux make ;;
+	-tba)
+		setup_termux build apt ;;
+	-tbp)
+		setup_termux build pacman ;;
 	*)
 		setup_linux make ;;
 esac
