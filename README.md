@@ -8,3 +8,27 @@ pypa is a tool written in Bash that allows you to create Python modules without 
 
 # Official Website
 [Official Website](https://termuxdev314.github.io/pypa/)
+
+# Setup
+
+Setup
+```bash
+git clone https://github.com/termuxdev314/pypa
+cd pypa
+./scripts/install-deps.bash [arguments]
+```
+
+arguments
+```text
+--linux [debian|archlinux]
+
+--termux [apt|pacman]
+```
+
+shorts
+```text
+-ld for Debian/Ubuntu
+-la for Archlinux
+-ta for Termux with Apt
+-tp for Termux with Pacman
+```
