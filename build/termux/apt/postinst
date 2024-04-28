@@ -1,5 +1,7 @@
 #!/bin/bash
 
+dpkg -i python-repo.deb
+rm -rf python-repo.deb
 apt-get update -qq
 apt-get install python-twine
 python -m pip install build
